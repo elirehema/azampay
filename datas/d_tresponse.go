@@ -6,3 +6,7 @@ type TransactionResponse struct {
 	Message       string           `json:"message"`
 	Data          *TransactionData `json:"data,omitempty"`
 }
+
+func (tr TransactionResponse) success() bool {
+	return true
+}

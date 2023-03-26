@@ -13,3 +13,7 @@ type PaymentPartner struct {
 	Status                     string `json:"status"`
 	VendorType                 string `json:"vendorType"`
 }
+
+func (p *PaymentPartner) success() bool {
+	return true
+}
