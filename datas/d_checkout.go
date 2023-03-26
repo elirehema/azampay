@@ -1,50 +1,38 @@
 package datas
 
-import (
-	"fmt"
-
-	"github.com/google/uuid"
-)
-
 type CheckoutRequest struct {
-	Amount         string `json:"amount" binding:"required"`
-	Provider       string `json:"provider" binding:"required"`
-	MechantAccount string `json:"mechantAccountNo,omitempty"`
-	Password       string `json:"password"`
-	TenantId       string `json:"tenantId"  binding:"required"`
-	TenantName     string `json:"tenantName"  binding:"required"`
-	MobileNumber   string `json:"mobileNumber"  binding:"required"`
-	LoanId         string `json:"loanId"  binding:"required"`
-	ClientId       string `json:"clientId" binding:"required"`
+	Amount          string `json:"amount" binding:"required"`
+	Provider        string `json:"provider" binding:"required"`
+	AccountNumber   string `json:"accountNo,omitempty"`
+	MechantName     string `json:"mechantName"`
+	CurrencyCode    string `json:"currency"`
+	OneTimePassword string `json:"otp"`
+	ExternalId      string `json:"externalId"`
+	MobileNumber    string `json:"mobileNumber"  binding:"required"`
+	Properties      Properties
 }
 
 func (r *CheckoutRequest) CreateMnoRequest() MNOCheckout {
 	return MNOCheckout{
-		Currency:      "TZS",
-		ExternalID:    uuid.New().String(),
-		Provider:      r.Provider,
-		AccountNumber: r.MobileNumber,
-		Amount:        r.Amount,
-		AdditionalProperties: Properties{
-			PropertyOne: fmt.Sprintf("Tenant-Name:%v", r.TenantName),
-			PropertyTwo: fmt.Sprintf("Tenant-Id:%v", r.TenantId),
-		},
+		Currency:             r.CurrencyCode,
+		ExternalID:           r.ExternalId,
+		Provider:             r.Provider,
+		AccountNumber:        r.MobileNumber,
+		Amount:               r.Amount,
+		AdditionalProperties: r.Properties,
 	}
 }
 
 func (b *CheckoutRequest) CreateBankRequest() BankCheckout {
 	return BankCheckout{
 		Amount:                b.Amount,
-		CurrencyCode:          "TZS",
-		MerchantAccountNumber: b.MechantAccount,
+		CurrencyCode:          b.CurrencyCode,
+		MerchantAccountNumber: b.AccountNumber,
 		MerchantMobileNumber:  b.MobileNumber,
-		MerchantName:          "Amala Core banking",
+		MerchantName:          b.MechantName,
 		Provider:              b.Provider,
-		ReferenceID:           uuid.New().String(),
-
-		AdditionalProperties: Properties{
-			PropertyOne: "Tenant-ID",
-			PropertyTwo: "Tenant-Name",
-		},
+		Otp:                   b.OneTimePassword,
+		ReferenceID:           b.ExternalId,
+		AdditionalProperties:  b.Properties,
 	}
 }

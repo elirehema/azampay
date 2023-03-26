@@ -102,8 +102,99 @@ This will return array list of partners of [azampay.datas.PaymentPartner struct]
       "vendorType": "seller"
    }
 ]
+```
+
+</details>
+
+
+## MNO Checkout
+The function checkout and make payment to requested MNO Provider.
+It accept [```datas.CheckoutRequest```](https://github.com/elirehema/azampay/blob/master/datas/d_checkout.go) and return [datas.TransactionResponse](https://github.com/elirehema/azampay/blob/master/datas/d_tresponse.go). For MNO Checkout `OneTimePassword`,`Account Number` and `MechantName` are optional (i.e they add no changes with MNO Checkout)
+
+
+#### Example
+```go
+
+import (
+	"github.com/elirehema/azampay"
+	"github.com/elirehema/azampay/datas"
+)
+
+func RequestPaymentFromMNO() {
+	mnoCheckoutRequest := datas.CheckoutRequest{
+		CurrencyCode: "TZS",
+		Provider: "Tigo",
+		ExternalId: "08d99549-2d49-4694-8320-f60b4e76be6a",
+		Amount: "200",
+		AccountNumber:"255716000000",
+		Properties: &datas.Properties{
+			PropertyOne: "John Doe",
+			PropertyTwo: "255742000000",
+		},
+	}
+	response := azampay.MNOCheckout(mnoCheckoutRequest)
+	print(response)
+}
 
 ```
 
+### Providers
+By the time of creating this package there were the list of supported providers ```"Airtel" "Tigo" "Halopesa" "Azampesa" "Mpesa"```. You can refer to [Azampay Documentation](https://developerdocs.azampay.co.tz/redoc#tag/Checkout-API/operation/Mno%20Checkout) for more clients. The package can accept new providers if any. 
 
-</detail>
+#### Output
+```json
+{
+    "success": true,
+    "transactionId": "49fc49562d84436cbdcce67c229fd99c",
+    "message": "Your request has been received and is being processed."
+}
+```
+
+## BANK Checkout
+Bank Checkout us the same flow as MNO Checkout but for bank checkout all fields are Mandatory. It accept CheckoutRequest and Return ```TransactionResponse``` structs. 
+
+Example
+```go
+import (
+	"github.com/elirehema/azampay"
+	"github.com/elirehema/azampay/datas"
+)
+
+func RequestPaymentFromMNO() {
+	mnoCheckoutRequest := datas.CheckoutRequest{
+      AccountNumber:"0552000000000",
+      OneTimePassword: 12345,
+      MechantName:   "Azam Pay Go Client".
+		CurrencyCode:  "TZS",
+		Provider:      "Tigo",
+		ExternalId:    "08d99549-2d49-4694-8320-f60b4e76be6a",
+		Amount:        "200",
+		AccountNumber: "255716000000",
+		Properties: &datas.Properties{
+			PropertyOne: "John Doe",
+			PropertyTwo: "255742000000",
+		},
+	}
+	response := azampay.BankCheckout(mnoCheckoutRequest)
+	print(response)
+}
+```
+
+### Output
+The function return ```TransactionResponse``` struct but now with additional field ```data```
+```json
+{
+    "success": true,
+    "msg": "",
+    "data": {
+        "properties": {
+            "ReferenceID": "ac8232323cb74110a8a26c4368eaf5ba"
+        }
+    }
+}
+```
+
+### POST Checkout
+
+This function excute Post Checkout in Azampay endpoint and returns back to you a URL to proceed with payment on web app. On payment confirmation Azampay will send notification to mechant app callback url if provided
+
