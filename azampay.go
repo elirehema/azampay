@@ -58,3 +58,7 @@ func GetPaymentPartners() []datas.PaymentPartner {
 	return results
 
 }
+
+type ResponseData interface {
+	success() bool
+}
