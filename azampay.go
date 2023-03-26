@@ -1,0 +1,5 @@
+package azampay
+
+func InitiatePayment() {
+
+}
