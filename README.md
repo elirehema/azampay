@@ -1,4 +1,8 @@
 # Azampay Golang package (Beta Version)
+[![Coverage Status](https://badgen.net/codecov/c/github/elirehema/azampay)](https://codecov.io/gh/elirehema/azampay)
+[![Go Report Card](https://goreportcard.com/badge/github.com/elirehema/azampay)](https://goreportcard.com/report/github.com/elirehema/azampay)
+[![GoDoc](https://godoc.org/github.com/elirehema/azampay?status.svg)](https://godoc.org/github.com/elirehema/azampay)
+
 
 # NOTE:
 **This package was not developed, owned or maintained by Azam Pay Development Team**
