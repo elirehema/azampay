@@ -1,5 +1,5 @@
 # Azampay Golang package (Beta Version)
-[![Coverage Status](https://badgen.net/codecov/c/github/elirehema/azampay)](https://codecov.io/gh/elirehema/azampay)
+[![Go](https://github.com/elirehema/azampay/actions/workflows/go.yml/badge.svg)](https://github.com/elirehema/azampay/actions/workflows/go.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/elirehema/azampay)](https://goreportcard.com/report/github.com/elirehema/azampay)
 [![GoDoc](https://godoc.org/github.com/elirehema/azampay?status.svg)](https://godoc.org/github.com/elirehema/azampay)
 
