@@ -42,8 +42,7 @@ func GetPaymentPartners() []datas.PaymentPartner {
 	res, err := clients.AzamClient.R().SetResult(&results).Get("/api/v1/Partner/GetPaymentPartners")
 	if err != nil {
 		print("STATUS CODE {}:", res.StatusCode(), res.Request.URL)
-	} else {
-		return results
 	}
+	return results
 
 }
