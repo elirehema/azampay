@@ -45,6 +45,9 @@ This function will return the registered partners of provided mechant informatio
 This will return array list of partners of [azampay.datas.PaymentPartner struct](https://github.com/elirehema/azampay/blob/master/datas/d_partner.go)
 
 E.g
+<details>
+    <summary> View More</summary>
+
 ```json
 [
    {
@@ -101,5 +104,7 @@ E.g
    }
 ]
 
-
 ```
+
+
+</detail>
