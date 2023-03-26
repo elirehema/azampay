@@ -15,7 +15,7 @@ The package was created as a open source project for Golang developers who are l
 
 ## Usage
 
-Put the azampay package on your `import` statement:
+Install package by ```go get github.com/elirehema/azampay```. Import the azampay package on your `import` statement:
 
 ```go
 import "github.com/elirehema/azampay"
