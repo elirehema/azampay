@@ -1,4 +1,4 @@
-module azampay
+module github.com/elirehema/azampay
 
 go 1.20
 

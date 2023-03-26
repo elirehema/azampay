@@ -1,10 +1,11 @@
 package clients
 
 import (
-	"azampay/datas"
 	"log"
 	"os"
 	"time"
+
+	"github.com/elirehema/azampay/datas"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/joho/godotenv"
