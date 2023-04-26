@@ -1,4 +1,4 @@
-# Azampay Golang package (Beta Version)
+# Azampay Golang package
 [![Go](https://github.com/elirehema/azampay/actions/workflows/go.yml/badge.svg?branch=master)](https://github.com/elirehema/azampay/actions/workflows/go.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/elirehema/azampay)](https://goreportcard.com/report/github.com/elirehema/azampay)
 [![GoDoc](https://godoc.org/github.com/elirehema/azampay?status.svg)](https://godoc.org/github.com/elirehema/azampay)
